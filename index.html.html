@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lase Web ID | Software Architecture & Web App Development</title>
+  
+  <!-- Primary Meta Tags (SEO Optimized) -->
+  <meta name="title" content="Lase Web ID | Software Architecture & Web App Development" />
+  <meta name="description" content="Lase Web ID - Agency penyedia jasa pembuatan Web Application, Company Profile, dan CMS Builder terpercaya. Founder: Elisia Lase." />
+  <meta name="keywords" content="Lase Web ID, Elisia Lase, Jasa Pembuatan Website, Custom Web Application, Company Profile, CMS Builder, Teknik Informatika" />
+  <meta name="author" content="Elisia Lase - Lase Web ID" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://laseweb.id" />
+
+  <!-- Open Graph / Facebook / WhatsApp SEO -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://laseweb.id/" />
+  <meta property="og:title" content="Lase Web ID | Software Architecture & Web App Development" />
+  <meta property="og:description" content="Layanan pembuatan website company profile, custom web application, dan CMS Builder terpercaya dengan visual transisi grafis modern. Founder: Elisia Lase." />
+  <meta property="og:image" content="https://laseweb.id/assets/og-image.jpg" />
+
+  <!-- Twitter SEO -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://laseweb.id/" />
+  <meta property="twitter:title" content="Lase Web ID | Software Architecture & Web App Development" />
+  <meta property="twitter:description" content="Website Resmi Lase Web ID - Founder: Elisia Lase. Jasa pembuatan website & aplikasi web kustom." />
+
+  <!-- Schema.org JSON-LD Structured Data for Google SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://laseweb.id/#organization",
+        "name": "Lase Web ID",
+        "url": "https://laseweb.id",
+        "logo": "https://laseweb.id/assets/logo.png",
+        "founder": {
+          "@type": "Person",
+          "name": "Elisia Lase",
+          "jobTitle": "Founder & Lead Software Engineer",
+          "alumniOf": "Teknik Informatika (Informatics Engineering)"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+6285814496065",
+          "contactType": "customer service",
+          "email": "lasewebid@gmail.com",
+          "areaServed": "ID",
+          "availableLanguage": "Indonesian"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "48"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- External Stylesheet & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              900: '#312e81',
+              accent: '#06b6d4'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen relative overflow-x-hidden">
+
+  <!-- Canvas Partikel Transisi Visual Grafis Interaktif -->
+  <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+  
+  <!-- Glowing Ambient Blobs -->
+  <div class="fixed top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none glow-bg"></div>
+  <div class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-3xl pointer-events-none glow-bg" style="animation-delay: 3s;"></div>
+
+  <!-- NAVBAR UTAMA -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- LOGO BRAND (DINAMIS SINKRON DENGAN BACKEND) -->
+      <div class="flex items-center gap-3 cursor-pointer group" onclick="switchTab('home')">
+        <div id="nav-logo-container" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-0.5 shadow-lg shadow-indigo-500/30 overflow-hidden">
+          <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+            <i data-lucide="code-2" class="w-5 h-5 text-cyan-400"></i>
+          </div>
+        </div>
+        <div>
+          <span id="nav-brand-name" class="text-xl font-bold bg-gradient-to-r from-white via-indigo-200 to-cyan-400 bg-clip-text text-transparent">Lase Web ID</span>
+          <span id="nav-brand-tagline" class="block text-[10px] text-slate-400 font-mono tracking-wider uppercase">SOFTWARE DEVELOPMENT AGENCY</span>
+        </div>
+      </div>
+
+      <!-- ITEM NAVIGASI UTAMA -->
+      <nav class="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-slate-800">
+        <button onclick="switchTab('home')" class="nav-btn active px-4 py-2 rounded-full text-xs font-medium transition-all text-white bg-indigo-600">Beranda</button>
+        <button onclick="switchTab('services')" class="nav-btn px-4 py-2 rounded-full text-xs font-medium transition-all text-slate-300 hover:text-white">Layanan</button>
+        <button onclick="switchTab('portfolio')" class="nav-btn px-4 py-2 rounded-full text-xs font-medium transition-all text-slate-300 hover:text-white">Portofolio</button>
+        <button onclick="switchTab('apps')" class="nav-btn px-4 py-2 rounded-full text-xs font-medium transition-all text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="box" class="w-3.5 h-3.5 text-indigo-400"></i> Rilis Aplikasi</button>
+        <button onclick="switchTab('calculator')" class="nav-btn px-4 py-2 rounded-full text-xs font-medium transition-all text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="calculator" class="w-3.5 h-3.5 text-cyan-400"></i> Kalkulator</button>
+        <button onclick="switchTab('reviews')" class="nav-btn px-4 py-2 rounded-full text-xs font-medium transition-all text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="star" class="w-3.5 h-3.5 text-amber-400"></i> Ulasan</button>
+        <button onclick="switchTab('contact')" class="nav-btn px-4 py-2 rounded-full text-xs font-medium transition-all text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="phone-call" class="w-3.5 h-3.5 text-emerald-400"></i> Kontak</button>
+      </nav>
+
+      <!-- BAGIAN KANAN ATAS (FOUNDER & AKSES ADMIN DASHBOARD) -->
+      <div class="flex items-center gap-2">
+        <button onclick="switchTab('founder')" title="Profil Founder Elisia Lase" class="w-9 h-9 rounded-full bg-slate-900 border border-indigo-500/50 hover:border-cyan-400 flex items-center justify-center text-indigo-400 hover:text-cyan-300 transition-all shadow-md group relative">
+          <i data-lucide="user-check" class="w-4 h-4"></i>
+          <span class="absolute -bottom-8 right-0 bg-slate-900 text-slate-200 text-[10px] font-mono px-2 py-0.5 rounded border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Founder: Elisia Lase</span>
+        </button>
+
+        <button onclick="openAdminModal()" title="Admin Dashboard" class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 hover:border-cyan-500 flex items-center justify-center text-slate-400 hover:text-cyan-300 transition-all shadow-md group relative">
+          <i data-lucide="lock" class="w-4 h-4"></i>
+          <span class="absolute -bottom-8 right-0 bg-slate-900 text-slate-200 text-[10px] font-mono px-2 py-0.5 rounded border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Admin Dashboard</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- KONTEN UTAMA PAGE (TAB SYSTEM) -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- TAB 1: BERANDA -->
+    <section id="tab-home" class="tab-content fade-in-up space-y-24">
+      
+      <!-- HERO BANNER -->
+      <div class="text-center py-10 space-y-6 max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-mono">
+          <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400"></i>
+          <span>Software Architecture, Custom Web App & Dynamic Content Engine</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+          Bangun Ekosistem Digital bersama <span id="hero-brand-name" class="bg-gradient-to-r from-indigo-400 via-cyan-400 to-teal-300 bg-clip-text text-transparent">Lase Web ID</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
+          Layanan pembuatan website company profile, custom web application, dan CMS Builder modern dengan transisi visual grafis interaktif serta sistem penawaran harga fleksibel.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <button onclick="switchTab('calculator')" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-7 py-3.5 rounded-full font-semibold shadow-xl shadow-emerald-600/20 flex items-center gap-2 transition-all hover:scale-105">
+            <i data-lucide="calculator" class="w-5 h-5"></i>
+            <span>Hitung & Tawar Harga</span>
+          </button>
+          <button onclick="switchTab('reviews')" class="glass-card hover:bg-slate-800 text-slate-200 px-6 py-3.5 rounded-full font-medium flex items-center gap-2 transition-all">
+            <i data-lucide="star" class="w-5 h-5 text-amber-400"></i>
+            <span>Lihat Ulasan Klien</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SHOWCASE LAYANAN UTAMA -->
+      <div class="space-y-8">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">PILIHAN LAYANAN</span>
+          <h2 class="text-3xl font-bold text-white">Layanan Utama Lase Web ID</h2>
+          <p class="text-slate-400 text-sm">Spesialisasi rekayasa perangkat lunak berbasis web untuk kebutuhan bisnis Anda.</p>
+        </div>
+        <div id="home-services-grid" class="grid md:grid-cols-3 gap-8"></div>
+      </div>
+
+      <!-- SHOWCASE RILIS APLIKASI FE -->
+      <div class="space-y-8">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-mono text-indigo-400 uppercase tracking-widest">SHOWCASE APLIKASI</span>
+          <h2 class="text-3xl font-bold text-white">Aplikasi Web Terpublikasi</h2>
+          <p class="text-slate-400 text-sm">Aplikasi web dan sistem informasi buatan Lase Web ID yang telah dirilis.</p>
+        </div>
+        <div id="home-apps-grid" class="grid md:grid-cols-2 gap-8"></div>
+      </div>
+
+      <!-- PROFIL FOUNDER RINGKAS -->
+      <div id="home-founder-card" class="glass-card p-8 sm:p-10 rounded-3xl max-w-4xl mx-auto border-indigo-500/30"></div>
+
+      <!-- TESTIMONI PUBLIK RINGKAS -->
+      <div class="space-y-8">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">TESTIMONI PEMBELI</span>
+          <h2 class="text-3xl font-bold text-white">Rating & Komentar Klien</h2>
+          <p class="text-slate-400 text-sm">Kepuasan klien yang telah memesan dan menggunakan aplikasi web dari Lase Web ID.</p>
+        </div>
+        <div id="home-reviews-grid" class="grid md:grid-cols-3 gap-6"></div>
+      </div>
+
+    </section>
+
+    <!-- TAB 2: LAYANAN -->
+    <section id="tab-services" class="tab-content hidden fade-in-up space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <h2 class="text-3xl font-bold text-white">Layanan Unggulan Lase Web ID</h2>
+        <p class="text-slate-400">Pilih spesifikasi layanan web application & software architecture sesuai skala bisnis Anda.</p>
+      </div>
+      <div id="services-page-grid" class="grid md:grid-cols-3 gap-8"></div>
+    </section>
+
+    <!-- TAB 3: PORTOFOLIO -->
+    <section id="tab-portfolio" class="tab-content hidden fade-in-up space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <h2 class="text-3xl font-bold text-white">Portofolio Sistem Informasi</h2>
+        <p class="text-slate-400">Proyek sistem informasi manajemen dan portofolio kantor hukum / bisnis skala industri.</p>
+      </div>
+      <div id="portfolio-page-grid" class="grid md:grid-cols-2 gap-8"></div>
+    </section>
+
+    <!-- TAB 4: RILIS APLIKASI -->
+    <section id="tab-apps" class="tab-content hidden fade-in-up space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <h2 class="text-3xl font-bold text-white">Aplikasi & Software Dirilis</h2>
+        <p class="text-slate-400">Daftar produk aplikasi web yang siap digunakan atau diuji coba langsung oleh publik.</p>
+      </div>
+      <div id="apps-page-grid" class="grid md:grid-cols-2 gap-8"></div>
+    </section>
+
+    <!-- TAB 5: KALKULATOR HARGA & TAWAR BUDGET -->
+    <section id="tab-calculator" class="tab-content hidden fade-in-up space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <h2 class="text-3xl font-bold text-white">Kalkulator Biaya & Fitur Tawar Harga</h2>
+        <p class="text-slate-400">Hitung estimasi investasi web Anda dan ajukan nominal penawaran sesuai budget bisnis Anda.</p>
+      </div>
+
+      <div class="glass-card p-6 sm:p-10 rounded-3xl max-w-3xl mx-auto space-y-8 border-indigo-500/30">
+        
+        <div class="space-y-3">
+          <label class="text-xs font-mono text-indigo-300 uppercase tracking-wider">1. Pilih Jenis Layanan Web</label>
+          <div id="calc-service-buttons" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <label class="text-xs font-mono text-indigo-300 uppercase tracking-wider">2. Jumlah Halaman / Modul</label>
+            <span id="calc-pages-val" class="text-sm font-bold text-cyan-400 font-mono">5 Halaman</span>
+          </div>
+          <input type="range" id="calc-pages-input" min="1" max="25" value="5" oninput="updatePages(this.value)" class="w-full accent-indigo-500 h-2 bg-slate-800 rounded-lg cursor-pointer" />
+        </div>
+
+        <div class="space-y-3 bg-slate-900/80 p-5 rounded-2xl border border-indigo-500/30">
+          <div class="flex justify-between items-center">
+            <label class="text-xs font-mono text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+              <i data-lucide="tag" class="w-4 h-4"></i>
+              <span>3. Fitur Tawar Harga (Budget Anda)</span>
+            </label>
+            <span class="text-[10px] text-slate-400 font-mono">Opsional</span>
+          </div>
+          <div class="relative">
+            <span class="absolute left-4 top-3 text-sm text-slate-400 font-mono">Rp</span>
+            <input type="number" id="offer-price-input" oninput="calculateOffer()" placeholder="Masukkan Nominal Tawaran Anda" class="w-full bg-slate-950 border border-slate-700 rounded-xl py-2.5 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-emerald-500 font-mono" />
+          </div>
+          <p id="offer-status-text" class="text-xs text-slate-400 font-mono"></p>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <span class="text-xs text-slate-400 font-mono">ESTIMASI STANDAR SISTEM</span>
+            <div id="calc-result-price" class="text-2xl font-bold text-indigo-300">Rp 0</div>
+            <div id="offer-result-display" class="hidden text-xl font-extrabold text-emerald-400 mt-1">Ajuan Tawar: Rp 0</div>
+            <span id="calc-result-days" class="text-xs text-slate-400 font-mono block mt-1">Estimasi Pengerjaan: ~0 Hari</span>
+          </div>
+
+          <button onclick="sendToWhatsappOffer()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-6 py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Kirim Penawaran ke WA Lase Web ID</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 6: ULASAN & KIRIM TESTIMONI -->
+    <section id="tab-reviews" class="tab-content hidden fade-in-up space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <h2 class="text-3xl font-bold text-white">Ulasan Klien & Rating Pembeli</h2>
+        <p class="text-slate-400">Testimoni langsung dari para klien yang telah menggunakan sistem informasi & aplikasi web kami.</p>
+      </div>
+
+      <div id="reviews-page-grid" class="grid md:grid-cols-3 gap-6"></div>
+
+      <!-- FORM KIRIM ULASAN PUBLIK -->
+      <div class="glass-card p-8 sm:p-10 rounded-3xl max-w-3xl mx-auto space-y-6 border-amber-500/30">
+        <div class="flex items-center gap-3 pb-4 border-b border-slate-800">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300">
+            <i data-lucide="star" class="w-5 h-5 fill-amber-300"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-white">Kirim Ulasan & Rating Anda</h3>
+            <p class="text-xs text-slate-400 font-mono">Ulasan akan masuk ke panel Admin Dashboard sebelum di-publish</p>
+          </div>
+        </div>
+
+        <form onsubmit="submitPublicReview(event)" class="space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label class="text-xs font-mono text-slate-300 uppercase">Nama Lengkap / Instansi *</label>
+              <input type="text" id="public-rev-name" required placeholder="Contoh: Rian Utama" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" />
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-mono text-slate-300 uppercase">Kategori Layanan *</label>
+              <input type="text" id="public-rev-company" required placeholder="Contoh: Company Profile / FLP Law Firm" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" />
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-mono text-slate-300 uppercase">Rating Bintang *</label>
+            <select id="public-rev-rating" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 font-mono">
+              <option value="5">⭐⭐⭐⭐⭐ 5 Bintang (Sangat Memuaskan)</option>
+              <option value="4">⭐⭐⭐⭐ 4 Bintang (Memuaskan)</option>
+              <option value="3">⭐⭐⭐ 3 Bintang (Cukup)</option>
+            </select>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-mono text-slate-300 uppercase">Ulasan / Testimoni *</label>
+            <textarea id="public-rev-comment" required rows="3" placeholder="Tuliskan pengalaman Anda menggunakan jasa kami..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-amber-400"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 transition-all">
+            <i data-lucide="send" class="w-5 h-5"></i>
+            <span>Kirim Testimoni Ke Admin</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- TAB 7: FOUNDER PROFILE -->
+    <section id="tab-founder" class="tab-content hidden fade-in-up space-y-8">
+      <div id="founder-full-page" class="glass-card p-8 sm:p-12 rounded-3xl max-w-4xl mx-auto border-indigo-500/30"></div>
+    </section>
+
+    <!-- TAB 8: KONTAK UTAMA -->
+    <section id="tab-contact" class="tab-content hidden fade-in-up space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <h2 class="text-3xl font-bold text-white">Pusat Layanan Kontak</h2>
+        <p class="text-slate-400">Hubungi langsung Founder & Tim Software Engineer Lase Web ID.</p>
+      </div>
+
+      <div class="glass-card p-8 sm:p-10 rounded-3xl max-w-2xl mx-auto space-y-6 border-indigo-500/30 text-center">
+        <div class="w-16 h-16 rounded-2xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 mx-auto">
+          <i data-lucide="building-2" class="w-8 h-8"></i>
+        </div>
+
+        <div>
+          <h3 id="contact-brand-title" class="text-2xl font-bold text-white">Lase Web ID Official</h3>
+          <p class="text-xs text-indigo-300 font-mono mt-1">Software Architecture & Web App Development Agency</p>
+        </div>
+
+        <p id="contact-address-text" class="text-slate-300 text-sm leading-relaxed max-w-lg mx-auto">
+          Siap membantu merancang sistem informasi manajemen, aplikasi web, dan arsitektur lunak bisnis Anda.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 text-xs font-mono text-slate-300 pt-2 border-t border-slate-800">
+          <div class="flex items-center justify-center gap-2 bg-slate-900 p-3 rounded-xl border border-slate-800">
+            <i data-lucide="mail" class="w-4 h-4 text-indigo-400"></i>
+            <span id="contact-email-val">lasewebid@gmail.com</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 bg-slate-900 p-3 rounded-xl border border-slate-800">
+            <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>
+            <span id="contact-wa-val">085814496065</span>
+          </div>
+        </div>
+
+        <button onclick="sendGeneralContactToWA()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2">
+          <i data-lucide="message-square" class="w-5 h-5"></i>
+          <span>Hubungi Chat WA Lase Web ID</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DIALOG LOGIN & ADMIN DASHBOARD -->
+  <div id="admin-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    
+    <!-- OVERLAY CONTAINER -->
+    <div class="glass-card w-full max-w-5xl rounded-3xl border-indigo-500/40 p-6 sm:p-8 space-y-6 relative my-8 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeAdminModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-900 border border-slate-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- VIEW 1: FORM LOGIN ADMIN DASHBOARD -->
+      <div id="admin-login-view" class="max-w-md mx-auto space-y-6 py-4">
+        <div class="text-center space-y-2">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-0.5 mx-auto shadow-lg">
+            <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-6 h-6 text-cyan-400"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-white">Admin Dashboard Login</h3>
+          <p class="text-xs text-slate-400 font-mono">Masukan email & password pengelola sistem Lase Web ID</p>
+        </div>
+
+        <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+          <div class="space-y-1.5">
+            <label class="text-xs font-mono text-slate-300 uppercase">Email Admin *</label>
+            <input type="email" id="login-email" required value="lasewebid@gmail.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white font-mono" />
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-mono text-slate-300 uppercase">Password *</label>
+            <input type="password" id="login-password" required value="Lasewebid123456789" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white font-mono" />
+          </div>
+
+          <p id="login-error-msg" class="text-xs text-rose-400 font-mono hidden"></p>
+
+          <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2">
+            <i data-lucide="log-in" class="w-4 h-4"></i>
+            <span>Autentikasi Masuk</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- VIEW 2: DASHBOARD BACKEND MANAGEMENT SYSTEM PANEL -->
+      <div id="admin-panel-view" class="hidden space-y-6">
+        
+        <!-- HEADER PANEL ADMIN -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+          <div>
+            <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+              <span>Admin Dashboard Control Panel</span>
+              <span class="text-xs font-mono bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full border border-indigo-500/30">Backend Active</span>
+            </h3>
+            <p class="text-xs text-slate-400 font-mono">Kelola keseluruhan isi frontend, rilis aplikasi, ulasan, profil founder, & logo secara tersentral</p>
+          </div>
+          <button onclick="handleAdminLogout()" class="bg-rose-500/10 text-rose-400 border border-rose-500/30 hover:bg-rose-500 hover:text-white px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+            <span>Keluar Admin</span>
+          </button>
+        </div>
+
+        <!-- TAB SELEKSI SUB-SETTINGS PANEL -->
+        <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-3">
+          <button onclick="switchAdminSubTab('founder')" id="adm-tab-founder" class="adm-subtab-btn active px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all bg-indigo-600 text-white">Profil Founder</button>
+          <button onclick="switchAdminSubTab('logo')" id="adm-tab-logo" class="adm-subtab-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all text-slate-400 hover:text-white">Logo & Branding</button>
+          <button onclick="switchAdminSubTab('services')" id="adm-tab-services" class="adm-subtab-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all text-slate-400 hover:text-white">Kelola Layanan</button>
+          <button onclick="switchAdminSubTab('apps')" id="adm-tab-apps" class="adm-subtab-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all text-slate-400 hover:text-white">Rilis Aplikasi</button>
+          <button onclick="switchAdminSubTab('reviews')" id="adm-tab-reviews" class="adm-subtab-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all text-slate-400 hover:text-white">Moderasi Ulasan</button>
+          <button onclick="switchAdminSubTab('contact')" id="adm-tab-contact" class="adm-subtab-btn px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all text-slate-400 hover:text-white">Kontak Agensi</button>
+        </div>
+
+        <!-- SUB TAB 1: FOUNDER SETTINGS -->
+        <div id="adm-sub-founder" class="adm-sub-content space-y-4">
+          <h4 class="text-lg font-bold text-white">Pengaturan Profil & Biodata Founder</h4>
+          <form onsubmit="saveFounderSettings(event)" class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="text-xs font-mono text-slate-300">Nama Founder *</label>
+                <input type="text" id="adm-founder-name" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="text-xs font-mono text-slate-300">Gelar / Pendidikan *</label>
+                <input type="text" id="adm-founder-degree" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white" />
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-mono text-slate-300">Jabatan *</label>
+              <input type="text" id="adm-founder-role" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white" />
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-mono text-slate-300">Biografi Ringkas Founder *</label>
+              <textarea id="adm-founder-bio" rows="3" required class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-sm text-white"></textarea>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-mono text-slate-300">Foto Profil Founder (Upload Lokal / URL)</label>
+              <div class="flex items-center gap-4">
+                <input type="file" id="adm-founder-file" accept="image/*" onchange="handleImageUpload(event, 'adm-founder-photo-preview')" class="text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-indigo-600 file:text-white file:font-mono hover:file:bg-indigo-500" />
+                <img id="adm-founder-photo-preview" class="w-12 h-12 rounded-full object-cover border border-indigo-500 hidden" alt="Preview Founder" />
+              </div>
+            </div>
+
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2.5 rounded-xl font-bold text-xs font-mono shadow-md">Simpan Profil Founder</button>
+          </form>
+        </div>
+
+        <!-- SUB TAB 2: LOGO & BRANDING -->
+        <div id="adm-sub-logo" class="adm-sub-content hidden space-y-4">
+          <h4 class="text-lg font-bold text-white">Pengaturan Logo & Branding Web ID</h4>
+          <form onsubmit="saveLogoSettings(event)" class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="text-xs font-mono text-slate-300">Nama Brand / Agensi *</label>
+                <input type="text" id="adm-logo-name" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white font-mono" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="text-xs font-mono text-slate-300">Tagline Sub-text *</label>
+                <input type="text" id="adm-logo-tagline" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white font-mono" />
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-mono text-slate-300">Upload Logo Gambar Baru (Lokal)</label>
+              <div class="flex items-center gap-4">
+                <input type="file" id="adm-logo-file" accept="image/*" onchange="handleImageUpload(event, 'adm-logo-preview')" class="text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-indigo-600 file:text-white file:font-mono hover:file:bg-indigo-500" />
+                <img id="adm-logo-preview" class="w-10 h-10 rounded-xl object-cover border border-cyan-400 hidden" alt="Preview Logo" />
+              </div>
+            </div>
+
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2.5 rounded-xl font-bold text-xs font-mono shadow-md">Simpan Logo & Branding</button>
+          </form>
+        </div>
+
+        <!-- SUB TAB 3: LAYANAN & KALKULATOR -->
+        <div id="adm-sub-services" class="adm-sub-content hidden space-y-6">
+          <h4 class="text-lg font-bold text-white">Kelola Layanan & Parameter Kalkulator</h4>
+          <div id="adm-services-list" class="space-y-4"></div>
+        </div>
+
+        <!-- SUB TAB 4: RILIS APLIKASI -->
+        <div id="adm-sub-apps" class="adm-sub-content hidden space-y-6">
+          <div class="flex justify-between items-center">
+            <h4 class="text-lg font-bold text-white">Kelola Showcase Rilis Aplikasi</h4>
+            <button onclick="openAppFormModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-mono font-bold flex items-center gap-2">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+              <span>Rilis Aplikasi Baru</span>
+            </button>
+          </div>
+          <div id="adm-apps-list" class="space-y-4"></div>
+        </div>
+
+        <!-- SUB TAB 5: MODERASI ULASAN -->
+        <div id="adm-sub-reviews" class="adm-sub-content hidden space-y-6">
+          <h4 class="text-lg font-bold text-white">Moderasi Ulasan Klien Masuk</h4>
+          <div id="adm-reviews-list" class="space-y-4"></div>
+        </div>
+
+        <!-- SUB TAB 6: KONTAK -->
+        <div id="adm-sub-contact" class="adm-sub-content hidden space-y-4">
+          <h4 class="text-lg font-bold text-white">Pengaturan Kontak & WhatsApp</h4>
+          <form onsubmit="saveContactSettings(event)" class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="text-xs font-mono text-slate-300">Nomor WhatsApp (Tanpa +) *</label>
+                <input type="text" id="adm-contact-wa" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white font-mono" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="text-xs font-mono text-slate-300">Alamat Email *</label>
+                <input type="email" id="adm-contact-email" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white font-mono" />
+              </div>
+            </div>
+
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2.5 rounded-xl font-bold text-xs font-mono shadow-md">Simpan Kontak Agensi</button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL RILIS APLIKASI BARU -->
+  <div id="app-form-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-card w-full max-w-lg rounded-3xl border-indigo-500/40 p-6 space-y-4 relative">
+      <button onclick="closeAppFormModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 class="text-xl font-bold text-white">Form Rilis Aplikasi Web</h3>
+      
+      <form onsubmit="saveAppRelease(event)" class="space-y-3">
+        <input type="hidden" id="app-form-id" />
+        
+        <div class="space-y-1">
+          <label class="text-xs font-mono text-slate-300">Nama Aplikasi *</label>
+          <input type="text" id="app-form-title" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white" />
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-mono text-slate-300">Versi App (Contoh: v1.0.4) *</label>
+          <input type="text" id="app-form-version" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-mono" />
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-mono text-slate-300">Deskripsi Fitur & Kegunaan *</label>
+          <textarea id="app-form-desc" required rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white"></textarea>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-mono text-slate-300">Tech Stack (Dipisahkan koma) *</label>
+          <input type="text" id="app-form-tech" required placeholder="Node.js, Express, React, Tailwind" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-mono" />
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-mono text-slate-300">Upload Screenshot Aplikasi (Lokal)</label>
+          <div class="flex items-center gap-3">
+            <input type="file" id="app-form-file" accept="image/*" onchange="handleImageUpload(event, 'app-form-preview')" class="text-xs text-slate-400 file:py-1 file:px-3 file:rounded-xl file:border-0 file:bg-indigo-600 file:text-white" />
+            <img id="app-form-preview" class="w-10 h-10 rounded-lg object-cover border border-cyan-400 hidden" alt="Preview App" />
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-mono text-slate-300">URL Demo Live (Opsional)</label>
+          <input type="url" id="app-form-url" placeholder="https://..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-mono" />
+        </div>
+
+        <div class="flex items-center gap-2 pt-2">
+          <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs font-mono">Simpan & Rilis Aplikasi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER SINKRON -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/90 relative z-10 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
+      <div>
+        © 2026 <strong id="footer-brand-name" class="text-slate-200">Lase Web ID</strong>. Founder: <span id="footer-founder-name">Elisia Lase</span>. All Rights Reserved.
+      </div>
+      <div class="flex items-center gap-6">
+        <span>WA: <strong id="footer-wa-val">085814496065</strong></span>
+        <span>Email: <strong id="footer-email-val">lasewebid@gmail.com</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIKA UTAMA -->
+  <script src="js/script.js"></script>
+</body>
+</html>
